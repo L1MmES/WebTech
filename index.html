@@ -322,6 +322,10 @@
       justify-content: center;
     }
 
+    .scroll-cue:hover{
+      cursor: pointer;
+    }
+
     .scroll-cue svg {
       width: 18px;
       height: 26px;
@@ -473,7 +477,7 @@
       padding: 0 8px;
       text-align: center;
       align-items: flex-start;
-      margin-left: 20px;
+      margin-left: 17px;
     }
 
     .case-label {
@@ -505,43 +509,7 @@
       background: var(--line);
     }
 
-    .phone-screen {
-      border-radius: 14px;
-      overflow: hidden;
-      aspect-ratio: 9/12;
-      background:
-        linear-gradient(150deg, #0d1a3a, #0a2a33 55%, #08191c),
-        linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-      position: relative;
-    }
-
-    .phone-screen .ps-eyebrow {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      letter-spacing: .1em;
-      color: rgba(255, 255, 255, 0.5);
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .phone-screen .ps-title {
-      font-family: 'Fraunces', serif;
-      font-size: 20px;
-      color: #fff;
-      margin: 0 0 8px;
-    }
-
-    .phone-screen .ps-sub {
-      font-size: 11.5px;
-      color: rgba(255, 255, 255, 0.55);
-      max-width: 22ch;
-    }
+    
 
     .case-card {
       background: var(--bg-raised-2);
@@ -1031,19 +999,14 @@
     /* Стилизация карточки с твоей био-информацией */
     .wtbg-card-bio {
       background-color: #161b22;
-      /* Темно-серый монолитный фон карточки (как в интерфейсах GitHub) */
       border: 1px solid #30363d;
       /* Тонкая серая техническая рамка для отделения от общего фона */
       padding: 40px;
       /* Большие внутренние поля для распределения контента */
       border-radius: 12px;
-      /* Скругление углов карточки под стать кнопке */
       text-align: center;
-      /* Выравниваем весь текст внутри по центру */
       max-width: 500px;
-      /* Ограничиваем максимальную ширину карточки на десктопах */
-      width: 90%;
-      /* На мобилках карточка адаптируется и занимает 90% экрана */
+      width: 100%;
     }
 
     /* Кастомизация шрифтов внутри карточки для сохранения иерархии */
@@ -1059,7 +1022,6 @@
       line-height: 1.6;
       margin-bottom: 25px;
     }
-
     .wtbg-text-meta {
       font-size: 14px;
       letter-spacing: 1px;
@@ -1068,7 +1030,7 @@
     .altri-lavori {
       border-radius: 14px;
       padding: 9px;
-      background: #161b22;
+      background: linear-gradient(rgb(24, 30, 41), rgb(26, 36, 54), rgb(24, 30, 41));
       position: fixed; /* Привязывает к экрану, игнорирует скролл */
       top: 50%;
       left: 50%;
@@ -1085,9 +1047,8 @@
       display: none; /* Изначально скрыто, JS включит обратно как flex */
       justify-content: center;
       align-items: center;
-      
       text-align: center;
-
+      height: auto;
     }
     .close-txt{
       text-align: right;
@@ -1097,8 +1058,112 @@
       right: 0;
       margin-top: 0px;
       margin-right: 3px;
+      animation: closeAnim 1.5s ease-in-out infinite;
     }
-  </style>
+    @keyframes closeAnim{
+      0%{ opacity: 100%;}
+      50%{ opacity: 15%;}
+      100%{ opacity: 100%;}
+
+    }    
+    .not-only-site{
+      margin-top: 20px;
+      text-align: center;
+      cursor: pointer;
+    }
+    details.not-only-site summary .chev {
+      transition: transform .25s ease;
+      color: var(--text-faint);
+    }
+
+    details.not-only-site[open] summary .chev {
+      transform: rotate(180deg);
+    }
+    details.not-only-site[open] summary .chev2 {
+      transform: rotate(-180deg);
+    }
+    summary .chev2 {
+    color: var(--text-faint);
+    display: inline-block;
+    transition: transform .25s ease;
+    }
+    summary .chev {
+    display: inline-block;
+    transition: transform .25s ease;
+    }
+
+    summary::marker {
+    display: none;
+    content: "";
+  }
+  .other-services{
+    padding: 6px;
+  }
+  .services-grid{
+    display:grid;
+    gap:14px;
+    margin-top:22px;
+}
+
+.service-card{
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:18px;
+    transition:.35s ease;
+}
+
+.service-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent);
+    background:rgba(82,140,255,.05);
+}
+
+.service-card .icon{
+    font-size:1.6rem;
+}
+
+.service-card h4{
+    margin:12px 0 8px;
+    color:var(--text);
+    font-weight:600;
+}
+
+.service-card p{
+    color:var(--text-faint);
+    line-height:1.6;
+    margin:0;
+}
+.about-fab{
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 58px;
+    height: 58px;
+    border: none;
+    border-radius: 50%;
+    color: #3caef5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation: about-me-anim 4s ease-in-out infinite;
+    cursor:pointer;
+    z-index:9999;
+    transition:.25s;
+}
+
+@keyframes about-me-anim {
+  0%{background: rgba(7,20,12,.92); box-shadow: 0 0 20px 5px rgb(60 174 245 / 60%);}
+  50%{ background: none; box-shadow: none;}
+  100%{ background: rgba(7,20,12,.92); box-shadow: 0 0 20px 5px rgb(60 174 245 / 60%);}
+}
+
+.about-fab:hover{
+    transform:translateY(-3px) scale(1.08);
+    box-shadow:0 18px 45px rgba(0,0,0,.45);
+}
+      
+  </style>  
 </head>
 
 <body>
@@ -1122,6 +1187,12 @@
       </a>
     </div>
   </nav>
+
+  <button id="wtbgTriggerOpen" class="about-fab" aria-label="Chi Sono">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-3.31 0-6 2.24-6 5h12c0-2.76-2.69-5-6-5z"/>
+    </svg>
+</button>
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" id="top">
@@ -1155,7 +1226,7 @@
       </a>
       <p class="microtrust"><span class="dot"></span>Rispondiamo entro 1 ora</p>
 
-      <div class="scroll-cue" aria-hidden="true">
+      <div class="scroll-cue" aria-hidden="true" onclick="scrollToSection()">
         <svg viewBox="0 0 24 34" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M12 2v26M4 21l8 8 8-8" />
         </svg>
@@ -1163,8 +1234,8 @@
     </div>
   </section>
 
-  <!-- ===================== MANIFESTO ===================== -->
-  <section class="manifesto">
+  <!-- ===================== `ESTO ===================== -->
+  <section class="manifesto" id="manif">
     <div class="wrap">
       <p class="manifesto-line" data-reveal>Tu pensi al tuo locale.<br><span>Noi pensiamo al resto.</span></p>
     </div>
@@ -1173,9 +1244,9 @@
   <!-- ===================== DIAGNOSI ===================== -->
   <section class="s-diagnosis">
     <div class="wrap">
-      <p class="eyebrow" data-reveal><span class="dot"></span>Vi offriamo la soluzione ai vostri problemi.</p>
-      <h2 class="diag-title display" data-reveal>Forse il problema non è il tuo locale.<br>Forse è il modo in cui i
-        clienti ti trovano.</h2>
+      <p class="eyebrow" data-reveal><span class="dot"></span>La soluzione ai vostri problemi </p>
+      
+      <h2 class="diag-title display" data-reveal>Forse il problema non è il tuo locale <br> Forse è il modo in cui i clienti ti trovano</h2>
 
       <div class="problem-cards">
         <div class="problem-card" data-reveal>
@@ -1208,10 +1279,9 @@
         </div>
       </div>
     </div>
-      
 
-    <div class="wrap">
-    <h2 style="margin-top: 50px;" class="diag-title display" data-reveal>Lascia che il sito faccia il suo lavoro.</h2>
+<div class="wrap">
+    <h2 style="margin-top: 50px; font-size: 35px; text-align: center;" class="diag-title display" data-reveal>Lascia che il sito faccia il suo lavoro</h2>
     <div class="problem-cards">
         <div class="problem-card" data-reveal>
           <div class="icon">📲</div>
@@ -1257,22 +1327,12 @@
 
       <div class="flow" data-reveal>
         <span class="flow-step">Sito</span><span class="flow-arrow">↓</span>
-        <span class="flow-step">Dominio</span><span class="flow-arrow">↓</span>
-        <span class="flow-step">WhatsApp</span><span class="flow-arrow">↓</span>
+        <span class="flow-step">Dominio</span><span class="flow-arrow" style="margin-left: 25px;">↓</span>
+        <span class="flow-step">WhatsApp</span><span class="flow-arrow" style="margin-left: 33px;">↓</span>
         <span class="flow-step">Supporto continuo</span>
       </div>
 
       <p class="case-label" data-reveal>UN NOSTRO LAVORO</p>
-      <div data-reveal>
-        <div class="phone-mock">
-          <div class="phone-chrome"><span></span><span></span><span></span></div>
-          <div class="phone-screen">
-            <p class="ps-eyebrow">Argana · Food &amp; Fresh Juice</p>
-            <p class="ps-title">Anteprima progetto</p>
-            <img src="img/Argana.png">
-          </div>
-        </div>
-
         <div class="case-card">
           <h3>Argana Food &amp; Fresh Juice</h3>
           <ul class="checklist">
@@ -1324,47 +1384,44 @@
         </div>
         <p class="price-sub">poi solo <strong>20€/mese</strong> — hosting, dominio, supporto e aggiornamenti</p>
 
-        <details class="includes">
+      <details class="includes">
+        <summary style="transition: all 0.4s ease-out;">
+            Cosa include il servizio <span class="chev">⌄</span>
+        </summary>
 
-          <!-- Заголовок выпадающего списка (клик по нему всё ещё может свернуть блок) -->
-          <summary style="transition: all 0.4s ease-out;">Cosa include il servizio <span class="chev">⌄</span></summary>
-
-          <!-- Детализированный список ништяков, которые входят в твои ежемесячные €20 -->
-          <ul class="includes-list">
-
-            <!-- Пункт 1: Хостинг на быстрых серверах -->
+        <ul class="includes-list">
             <li>
-              <strong>Hosting Professionale:</strong>
-              <span>Sito web sempre online, veloce e ottimizzato per smartphone.</span>
+                <strong>Presenza che non dorme mai</strong><br>
+                <span>Il sito continua a vendere e farsi trovare su Google mentre tu servi ai tavoli o dormi. Ogni ora di inattività costa clienti persi.</span>
             </li>
 
-            <!-- Пункт 2: Доменное имя .it или .com -->
             <li>
-              <strong>Dominio Incluso:</strong>
-              <span>Il nome della tua attività (es. .it / .com) registrato e protetto.</span>
+                <strong>Identità digitale protetta</strong><br>
+                <span>Dominio .it intestato a te, sempre attivo e blindato. Niente più rischi di perdere il nome del locale per colpa di un vecchio sito abbandonato.</span>
             </li>
 
-            <!-- Пункт 3: Киллер-фича про обновление цен через WhatsApp -->
             <li>
-              <strong>Gestione Prezzi via WhatsApp:</strong>
-              <span>Modifica dei prezzi e dei servizi in tempo reale con un semplice messaggio WhatsApp. Zero stress per
-                te.</span>
+                <strong>Controllo totale in un messaggio</strong><br>
+                <span>Cambi un prezzo, aggiungi un piatto o modifichi l’orario? Un solo WhatsApp e il sito si aggiorna all’istante. Stop ai menu stampati che diventano bugie nel giro di una settimana.</span>
             </li>
 
-            <!-- Пункт 4: Регулярные бэкапы против сбоев -->
             <li>
-              <strong>Backup Periodici:</strong>
-              <span>Copie di sicurezza settimanali per garantire la massima protezione dei tuoi dati.</span>
+                <strong>Protezione dai disastri digitali</strong><br>
+                <span>Backup completi ogni settimana. Se il sito viene attaccato o qualcosa va storto, torni online in pochi minuti invece di perdere giorni o settimane di incassi.</span>
             </li>
 
-            <!-- Пункт 5: Обновления кода и поддержка -->
             <li>
-              <strong>Aggiornamenti e Supporto:</strong>
-              <span>Manutenzione tecnica continua e modifiche rapide incluse ogni mese.</span>
+                <strong>Manutenzione invisibile inclusa</strong><br>
+                <span>Aggiornamenti di sicurezza, correzioni e piccoli cambiamenti senza costi extra. Eviti il rischio di pagare 300-500€ ogni volta che serve un intervento.</span>
             </li>
 
-          </ul>
-        </details>
+            <li>
+                <strong>Pace mentale a costo fisso</strong><br>
+                <span>Smetti di preoccuparti della tecnologia. Paghi 20€ al mese e sai che tutto funziona, resta aggiornato e continua a portare clienti mentre tu ti occupi solo del locale.</span>
+            </li>
+        </ul>
+      </details>
+
       </div>
       <p class="no-lockin" data-reveal>Nessun vincolo. Puoi lasciare quando vuoi.</p>
     </div>
@@ -1391,32 +1448,32 @@
     </div>
   </section>
 
-  <!-- Изолированный контейнер для кнопки, чтобы центрировать её перед самым футером -->
-  <div class="wtbg-about-trigger-wrap">
-    <!-- Монолитная кнопка с префиксом и кастомным ID для перехвата в JS -->
-    <button id="wtbgTriggerOpen" class="wtbg-btn-profile" data-reveal>Chi Sono</button>
-  </div> <!-- Закрываем контейнер кнопки -->
-
   <!-- Полноэкранный оверлей. Изначально скрыт утилитарным классом wtbg-hidden-block -->
   <section class="wtbg-overlay-profile wtbg-hidden-block" id="wtbgOverlayBlock">
-
     <!-- Кнопка-крестик. Привязана к правому верхнему углу оверлея через абсолютное позиционирование -->
     <button class="wtbg-btn-overlay-close" id="wtbgTriggerClose" aria-label="Chiudi sezione">&times;</button>
-
-
     <!-- Внутренняя обертка структуры для удержания контента в сетке -->
     <div class="wrap">
       <!-- Главная карточка биографии с темным бэкграундом и защитой от конфликтов CSS -->
       <div class="wtbg-card-bio" data-reveal>
         <!-- Круглый аватар для твоей фотографии с синим ободком логотипа -->
         <!-- Приветственный текст, использующий глобальный шрифт display -->
-        <p class="wtbg-text-greet display">Ciao! Sono Illia.</p>
+        <p class="wtbg-text-greet display">Ciao! Sono Illia</p>
         <!-- Ультимативный продающий текст про прямую связь в обход менеджеров -->
-        <p class="wtbg-text-sub">Se mi scrivi su WhatsApp, parli direttamente con me.<br>Nessun call center. Nessun
+        <p class="wtbg-text-sub">Se mi scrivi su <span style="color: #1ea952;">WhatsApp</span>, parli direttamente con me.<br>Nessun call center. Nessun
           commerciale.</p>
         <!-- Мета-строка: бренд и локация. Синий цвет выделен строго под твой логотип -->
-        <p class="wtbg-text-meta mono">FONDATORE DI <span style="color: #1e4de8;"><strong>WEBTECH BG</strong></span><br> ·
-          BERGAMO ·</p>
+        <p class="wtbg-text-meta mono">FONDATORE DI <span style="color: #1e4de8;"><strong>WEBTECH BG</strong></span></p>
+
+        <a class="nav-cta" style="margin-top: 20px;"
+        href="https://wa.me/393298992803?text=Ciao%2C%20ho%20visto%20il%20vostro%20sito%2C%20vorrei%20saperne%20di%20pi%C3%B9."
+        target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm5.2 14.2c-.22.62-1.28 1.18-1.77 1.24-.45.06-1.02.08-1.65-.1-.38-.11-.87-.28-1.5-.55-2.63-1.14-4.35-3.8-4.48-3.98-.13-.18-1.07-1.42-1.07-2.7 0-1.29.68-1.92.92-2.18.24-.26.53-.33.7-.33h.5c.16 0 .38-.06.6.45.22.53.75 1.83.82 1.96.07.13.11.29.02.47-.09.18-.13.29-.26.44-.13.16-.28.35-.4.47-.13.13-.27.28-.11.55.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.13.43.11.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.26.13.43.2.5.31.07.11.07.62-.15 1.24z" />
+        </svg>
+        WhatsApp
+      </a>  
       </div> <!-- Закрываем карточку wtbg-card-bio -->
     </div> <!-- Закрываем обертку wrap -->
   </section> <!-- Закрываем полноэкранную секцию -->
@@ -1493,7 +1550,12 @@
       }
     }
   </script>
+  <script>
+    function scrollToSection(){
+      const e = document.getElementById('manif')
+       if(e){ e.scrollIntoView({ behavior: 'smooth' }); }
+    }
+  </script>
 
 </body>
-
 </html>
